@@ -1,0 +1,40 @@
+{
+  "name": "postcss-presence-transition",
+  "version": "1.0.0",
+  "description": "PostCSS plugin for presence transition.",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "transition",
+    "visibility",
+    "display",
+    "presence"
+  ],
+  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "postcss": "^5.0.5",
+    "postcss-value-parser": "^2.0.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-mocha": "^2.1.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niksy/postcss-presence-transition.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niksy/postcss-presence-transition/issues"
+  },
+  "homepage": "https://github.com/niksy/postcss-presence-transition#readme"
+}

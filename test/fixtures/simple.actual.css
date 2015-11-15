@@ -1,0 +1,37 @@
+.foo {
+	transition:opacity 123s ease-in-out, visibility 0s linear 123s;
+	opacity:0;
+	visibility:hidden;
+}
+
+.foo:hover {
+	opacity:1;
+	transition-delay:0s;
+	visibility:visible;
+}
+
+.bar {
+	transition:height 3s ease, opacity 456s ease-in-out, visibility 0s linear 456s;
+	opacity:0;
+	visibility:hidden;
+}
+
+.bar:hover {
+	transition:opacity 4s ease;
+	opacity:1;
+	transition-delay:0s;
+	visibility:visible;
+}
+
+.baz {
+	transition:height 3s ease, opacity 789s ease-in-out, display 1s linear, visibility 0s linear 789s;
+	opacity:0;
+	visibility:hidden;
+}
+
+.baz:hover {
+	transition:opacity 4s ease, display 2s linear;
+	opacity:1;
+	transition-delay:0s;
+	visibility:visible;
+}

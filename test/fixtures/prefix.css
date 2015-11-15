@@ -1,0 +1,29 @@
+.foo {
+	transition:-x-presence-start 123s ease-in-out;
+	opacity:0;
+}
+
+.foo:hover {
+	transition:-x-presence-end;
+	opacity:1;
+}
+
+.bar {
+	transition:height 3s ease, -x-presence-start 456s ease-in-out;
+	opacity:0;
+}
+
+.bar:hover {
+	transition:opacity 4s ease, -x-presence-end;
+	opacity:1;
+}
+
+.baz {
+	transition:height 3s ease, -x-presence-start 789s ease-in-out, display 1s linear;
+	opacity:0;
+}
+
+.baz:hover {
+	transition:opacity 4s ease, -x-presence-end, display 2s linear;
+	opacity:1;
+}
