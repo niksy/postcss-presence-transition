@@ -2,33 +2,74 @@
   "name": "postcss-presence-transition",
   "version": "1.0.0",
   "description": "PostCSS plugin for presence transition.",
-  "main": "index.js",
-  "scripts": {
-    "test": "gulp"
-  },
-  "keywords": [
-    "postcss",
-    "css",
-    "postcss-plugin",
-    "transition",
-    "visibility",
-    "display",
-    "presence"
-  ],
-  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
+  "main": "index.cjs.js",
+  "module": "index.esm.js",
+  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
   "license": "MIT",
-  "dependencies": {
-    "postcss": "^5.0.5",
-    "postcss-value-parser": "^2.0.4"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-jshint": "^1.11.2",
-    "gulp-mocha": "^2.1.3"
-  },
+  "files": [
+    "index.cjs.{js,js.map}",
+    "index.esm.{js,js.map}",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "sideEffects": false,
   "directories": {
     "test": "test"
   },
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "lint": "eslint '{index,lib/**/*,test/**/*}.js'",
+    "postpublish": "GITHUB_TOKEN=$GITHUB_RELEASE_TOKEN github-release-from-changelog",
+    "prepublishOnly": "npm run build",
+    "release": "np",
+    "test": "npm run lint && nyc mocha --require esm 'test/**/*.js' $([[ $WATCH_TEST ]] && echo --watch) && nyc check-coverage",
+    "test:watch": "WATCH_TEST=1 npm test",
+    "version": "version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md"
+  },
+  "dependencies": {
+    "postcss-value-parser": "^2.0.4"
+  },
+  "devDependencies": {
+    "changelog-verify": "^1.1.2",
+    "eslint": "^6.7.2",
+    "eslint-config-niksy": "^8.0.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-extend": "^0.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsdoc": "^18.4.3",
+    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-unicorn": "^14.0.1",
+    "esm": "^3.0.51",
+    "github-release-from-changelog": "^2.1.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "mocha": "^4.1.0",
+    "np": "^3.0.4",
+    "nyc": "^12.0.2",
+    "postcss": "^8.1.1",
+    "prettier": "^1.17.0",
+    "rollup": "^1.0.0",
+    "version-changelog": "^3.1.1"
+  },
+  "peerDependencies": {
+    "postcss": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "keywords": [
+    "css",
+    "display",
+    "postcss",
+    "postcss-plugin",
+    "presence",
+    "transition",
+    "visibility"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/niksy/postcss-presence-transition.git"

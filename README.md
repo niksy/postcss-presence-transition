@@ -2,47 +2,54 @@
 
 [PostCSS](https://github.com/postcss/postcss) plugin for presence transition.
 
-Implementation of [technique](http://www.greywyvern.com/?post=337) which solves 
+Implementation of [technique](http://www.greywyvern.com/?post=337) which solves
 situation where you would like to transition `display` property.
 
 ```css
 /* Before */
 
 .foo {
-	transition:presence-start 0.2s ease-in-out;
-	opacity:0;
+	transition: presence-start 0.2s ease-in-out;
+	opacity: 0;
 }
 
 .foo:hover {
-	transition:presence-end;
-	opacity:1;
+	transition: presence-end;
+	opacity: 1;
 }
 
 /* After */
 
 .foo {
-	transition:opacity 0.2s ease-in-out, visibility 0s linear 0.2s;
-	opacity:0;
-	visibility:hidden;
+	transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s;
+	opacity: 0;
+	visibility: hidden;
 }
 
 .foo:hover {
-	opacity:1;
-	transition-delay:0s;
-	visibility:visible;
+	opacity: 1;
+	transition-delay: 0s;
+	visibility: visible;
 }
 ```
 
 ## Installation
 
 ```sh
-npm install postcss-presence-transition --save-dev
+npm install postcss postcss-presence-transition --save-dev
 ```
 
 ## Usage
 
 ```js
-postcss([ require('postcss-presence-transition')({ /* options */ }) ])
+import postcss from 'postcss';
+import postcssPresenceTransition from 'postcss-presence-transition';
+
+postcss([
+	postcssPresenceTransition({
+		/* options */
+	})
+]);
 ```
 
 ## Options
@@ -50,10 +57,17 @@ postcss([ require('postcss-presence-transition')({ /* options */ }) ])
 #### `prefix`
 
 Type: `String`  
-Default: ` `
+Default: ``
 
 Prefix to use for `presence-start` and `presence-end`.
 
 ## License
 
 MIT © [Ivan Nikolić](http://ivannikolic.com)
+
+<!-- prettier-ignore-start -->
+
+[ci]: https://travis-ci.com/niksy/postcss-presence-transition
+[ci-img]: https://travis-ci.com/niksy/postcss-presence-transition.svg?branch=master
+
+<!-- prettier-ignore-end -->

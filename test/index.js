@@ -1,46 +1,35 @@
-/* jshint mocha:true  */
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import postcss from 'postcss';
+import plugin from '../index';
 
-var fs = require('fs');
-var path = require('path');
-var postcss = require('postcss');
-var assert = require('assert');
-var plugin = require('../');
+async function runTest(name, options) {
+	const fixtureDir = './test/fixtures/';
+	const baseName = name.split(':')[0];
+	const testName = name.split(':').join('.');
+	const inputPath = path.resolve(`${fixtureDir + baseName}.css`);
+	const actualPath = path.resolve(`${fixtureDir + testName}.actual.css`);
+	const expectPath = path.resolve(`${fixtureDir + testName}.expect.css`);
 
-function test ( name, opts, done ) {
-	var fixtureDir = './test/fixtures/';
-	var baseName   = name.split(':')[0];
-	var testName   = name.split(':').join('.');
-	var inputPath  = path.resolve(fixtureDir + baseName + '.css');
-	var actualPath = path.resolve(fixtureDir + testName + '.actual.css');
-	var expectPath = path.resolve(fixtureDir + testName + '.expect.css');
+	const inputCSS = fs.readFileSync(inputPath, 'utf8');
+	const expectCSS = fs.readFileSync(expectPath, 'utf8');
 
-	var inputCSS  = fs.readFileSync(inputPath, 'utf8');
-	var expectCSS = fs.readFileSync(expectPath, 'utf8');
-
-	postcss([plugin(opts)]).process(inputCSS, {
+	const result = await postcss([plugin(options)]).process(inputCSS, {
 		from: inputPath
-	}).then(function (result) {
-		var actualCSS = result.css;
-
-		fs.writeFileSync(actualPath, actualCSS);
-
-		assert.equal(actualCSS, expectCSS);
-		assert.equal(result.warnings().length, 0);
-
-		done();
-	}).catch(function (error) {
-		done(error);
 	});
+	const actualCSS = result.css;
+
+	fs.writeFileSync(actualPath, actualCSS);
+
+	assert.equal(actualCSS, expectCSS);
+	assert.equal(result.warnings().length, 0);
 }
 
-describe('postcss-presence-transition', function () {
+it('simple', function() {
+	return runTest('simple', {});
+});
 
-	it('simple', function ( done ) {
-		test('simple', {}, done);
-	});
-
-	it('prefix: -x-', function ( done ) {
-		test('prefix', { prefix: '-x-' }, done);
-	});
-
+it('prefix: -x-', function() {
+	return runTest('prefix', { prefix: '-x-' });
 });
