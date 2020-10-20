@@ -1,6 +1,6 @@
 import parse from 'postcss-value-parser';
 
-export default (options) => {
+const plugin = (options) => {
 	options = options || {};
 	options.prefix = options.prefix || '';
 
@@ -65,5 +65,6 @@ export default (options) => {
 		}
 	};
 };
+plugin.postcss = true;
 
-export const postcss = true;
+export default plugin;
