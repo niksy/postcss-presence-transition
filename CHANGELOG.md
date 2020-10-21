@@ -2,6 +2,8 @@
 
 ## [Unreleased][]
 
+## [3.0.1][] - 2020-10-21
+
 ### Changed
 
 -   Upgrade dependencies
@@ -31,3 +33,6 @@
 [unreleased]:
 	https://github.com/niksy/postcss-presence-transition/compare/v3.0.0...HEAD
 [3.0.0]: https://github.com/niksy/postcss-presence-transition/tree/v3.0.0
+[unreleased]:
+	https://github.com/niksy/postcss-presence-transition/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/niksy/postcss-presence-transition/tree/v3.0.1

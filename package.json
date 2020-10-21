@@ -1,6 +1,6 @@
 {
   "name": "postcss-presence-transition",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "PostCSS plugin for presence transition.",
   "main": "index.cjs.js",
   "module": "index.esm.js",
